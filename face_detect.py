@@ -142,12 +142,12 @@ def track_ssd(img_path="./data_try/0__0", t_type=0):
 			# Display FPS on frame
 			cv2.putText(frame, "FPS : " + str(int(fps)), (100, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2);
 
-			# Display result
-			cv2.imshow("Tracking", frame)
-
-			# Exit if ESC pressed
-			k = cv2.waitKey(1) & 0xff
-			if k == 27: break
+			# # Display result
+			# cv2.imshow("Tracking", frame)
+			#
+			# # Exit if ESC pressed
+			# k = cv2.waitKey(1) & 0xff
+			# if k == 27: break
 
 
 
