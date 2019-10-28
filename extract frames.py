@@ -58,7 +58,7 @@ if __name__ == '__main__':
     ori_path = '/home/wei/Documents/DATA/kinship/crops_ori/'
     dir_path = '/home/wei/Documents/DATA/kinship/ksframes/'
 
-    give_kin = "B-S"
+    give_kin = "S-S"
     ori_ud = os.path.join(ori_path,kin_dict[give_kin])
     dir_ud = os.path.join(dir_path,kin_dict[give_kin])
     a = pd.read_excel('kinship.xlsx')

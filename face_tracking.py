@@ -1,6 +1,6 @@
 from ft_img import *
 from face_detect import *
-
+from tqdm import tqdm
 def check_file(filenames):
 
 	f_type = ['.jpg','.png']
@@ -33,5 +33,9 @@ if __name__ == "__main__":
 	mode 1: ssd detection + opencv
 	mode 2: pure ssd detection
 	"""
-	path = "/home/wei/Documents/DATA/kinship/ksframes/vi-4-21/2019-04-21-13-24-29"
-	face_tracking(path,mode = 2)
+	path = "/home/wei/Documents/DATA/kinship/ksframes/"
+	ls = sorted(os.listdir(path))
+	for sl in tqdm(ls):
+		sub_path = os.path.join(path,sl)
+		for su in tqdm(sorted(os.listdir(sub_path))):
+			face_tracking(path,mode = 2)

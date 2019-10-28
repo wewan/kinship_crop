@@ -129,18 +129,18 @@ def track_ssd(img_path="./data_try/0__0", t_type=0):
 			timer = cv2.getTickCount()
 			bbox, score = bbox_score_mini(frame,detection_graph,sess)
 			bbox = np.squeeze(bbox)[0]
-			fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
+			# fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 			# score = np.squeeze(score)[0]
 			bbox = bbox_transfer(bbox, height, width)
 			write_txt(txt_path, images_list[i], bbox)
-			p1 = (int(bbox[0]), int(bbox[1]))
-			p2 = (int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3]))
-			cv2.rectangle(frame, p1, p2, (255, 0, 0), 2, 1)
+			# p1 = (int(bbox[0]), int(bbox[1]))
+			# p2 = (int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3]))
+			# cv2.rectangle(frame, p1, p2, (255, 0, 0), 2, 1)
 
-			cv2.putText(frame, tracker_type + " Tracker", (100, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2);
+			# cv2.putText(frame, tracker_type + " Tracker", (100, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2);
 
 			# Display FPS on frame
-			cv2.putText(frame, "FPS : " + str(int(fps)), (100, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2);
+			# cv2.putText(frame, "FPS : " + str(int(fps)), (100, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2);
 
 			# # Display result
 			# cv2.imshow("Tracking", frame)
