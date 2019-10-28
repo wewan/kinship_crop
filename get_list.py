@@ -1,7 +1,11 @@
 import  os
+from random import shuffle
+import pickle
 
-a= sorted(os.listdir('/home/wei/Documents/DATA/kinship/ksframes/bro-bro'))
-print(a)
+
+# a= sorted(os.listdir('/home/wei/Documents/DATA/kinship/ksframes/bro-bro'))
+# print(a)
+
 bro_bro = [('B-B_01_1', 'B-B_01_2'),
              ('B-B_02_1', 'B-B_02_2'),
              ('B-B_03_1', 'B-B_03_2'),
@@ -223,4 +227,97 @@ mother_son = [('M-S_01_1', 'M-S_01_2'),
               ('M-S_34_1', 'M-S_34_2')]
 
 
+kin_dict = {'bro_bro':bro_bro,'bro_sist':bro_sist,
+            'sist_sist':sist_sist,'father_son':father_son,
+            'mother_dau':mother_dau,'mother_son':mother_son,
+            'father_dau':father_dau}
 
+
+def generate_ls(ls,split_n):
+    """
+    :param ls:
+    :param split_n: split into n folds
+    :return:
+    """
+    sn = split_n
+    lth_f = int(len(ls)/sn)
+    train_ls = []
+    for i in range(sn):
+        if i != sn-1:
+            a = ls[i*lth_f:i*lth_f+lth_f]
+            # print(a)
+        else:
+            a = ls[i*lth_f:]
+            # print(a)
+        a_neg = _generate_neg(a)
+
+        for im1,im2 in a:
+            train_ls.append([i+1,1,im1,im2])
+
+        for im1,im2 in a_neg:
+            train_ls.append([i+1,0,im1,im2])
+
+    # print(train_ls)
+    return train_ls
+
+
+
+
+def _generate_neg(ls):
+    """
+    generate neg pairs
+    :param ls:
+    :return:
+    """
+    it_1 = []
+    it_2 = []
+    for i in ls:
+        it_1.append(i[0])
+        it_2.append(i[1])
+
+    while _check(it_1,it_2):
+        shuffle(it_2)
+
+    neg_ls = list(zip(it_1,it_2))
+    # print(neg_ls)
+    return neg_ls
+
+
+def _check(a,b):
+    """
+    if there is more than one pair matched, return True
+    :param a:
+    :param b:
+    :return:
+    """
+    for i,j in zip(a,b):
+        if i.split('_')[1]==j.split('_')[1]:
+            return True
+    return False
+
+
+
+#
+# train_ls = generate_ls(bro_bro,3)
+#
+# print(train_ls)
+# with open('bro_bro.pkl', 'wb') as fp:
+#     pickle.dump(train_ls, fp)
+
+
+
+# with open ('bro_bro.pkl', 'rb') as fp:
+#     itemlist = pickle.load(fp)
+#
+# print(itemlist)
+
+# a = [('B-B_01_1', 'B-B_01_2'), ('B-B_02_1', 'B-B_02_2'), ('B-B_03_1', 'B-B_03_2'), ('B-B_04_1', 'B-B_04_2'), ('B-B_05_1', 'B-B_05_2')]
+# _generate_neg(a)
+
+if __name__=='__main__':
+
+    for kin_g in kin_dict:
+
+        train_ls = generate_ls(kin_dict[kin_g], 3)
+        with open('{}.pkl'.format(kin_g), 'wb') as fp:
+            pickle.dump(train_ls, fp)
