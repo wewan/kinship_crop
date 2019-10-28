@@ -242,6 +242,7 @@ def generate_ls(ls,split_n):
     sn = split_n
     lth_f = int(len(ls)/sn)
     train_ls = []
+    shuffle(ls)
     for i in range(sn):
         if i != sn-1:
             a = ls[i*lth_f:i*lth_f+lth_f]
@@ -301,7 +302,7 @@ if __name__=='__main__':
 
     for kin_g in kin_dict:
 
-        train_ls = generate_ls(kin_dict[kin_g], 3)
+        train_ls = generate_ls(kin_dict[kin_g], 5)
         with open('kin_ls/{}.pkl'.format(kin_g), 'wb') as fp:
             pickle.dump(train_ls, fp)
 
