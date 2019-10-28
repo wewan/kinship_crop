@@ -302,7 +302,7 @@ if __name__=='__main__':
     for kin_g in kin_dict:
 
         train_ls = generate_ls(kin_dict[kin_g], 3)
-        with open('{}.pkl'.format(kin_g), 'wb') as fp:
+        with open('kin_ls/{}.pkl'.format(kin_g), 'wb') as fp:
             pickle.dump(train_ls, fp)
 
     # with open ('father_dau.pkl', 'rb') as fp:
