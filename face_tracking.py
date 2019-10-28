@@ -35,7 +35,8 @@ if __name__ == "__main__":
 	"""
 	path = "/home/wei/Documents/DATA/kinship/ksframes/"
 	ls = sorted(os.listdir(path))
-	for sl in tqdm(ls):
+	for sl in ls:
 		sub_path = os.path.join(path,sl)
-		for su in tqdm(sorted(os.listdir(sub_path))):
+		for su in sorted(os.listdir(sub_path)):
 			face_tracking(path,mode = 2)
+			print("finish {}".format(su))
