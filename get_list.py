@@ -305,6 +305,7 @@ if __name__=='__main__':
         with open('{}.pkl'.format(kin_g), 'wb') as fp:
             pickle.dump(train_ls, fp)
 
-    # with open ('bro_bro.pkl', 'rb') as fp:
+    # with open ('father_dau.pkl', 'rb') as fp:
     #     itemlist = pickle.load(fp)
-    #
+    # print(8)
+
