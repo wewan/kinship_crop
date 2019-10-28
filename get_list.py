@@ -297,23 +297,6 @@ def _check(a,b):
 
 
 
-#
-# train_ls = generate_ls(bro_bro,3)
-#
-# print(train_ls)
-# with open('bro_bro.pkl', 'wb') as fp:
-#     pickle.dump(train_ls, fp)
-
-
-
-# with open ('bro_bro.pkl', 'rb') as fp:
-#     itemlist = pickle.load(fp)
-#
-# print(itemlist)
-
-# a = [('B-B_01_1', 'B-B_01_2'), ('B-B_02_1', 'B-B_02_2'), ('B-B_03_1', 'B-B_03_2'), ('B-B_04_1', 'B-B_04_2'), ('B-B_05_1', 'B-B_05_2')]
-# _generate_neg(a)
-
 if __name__=='__main__':
 
     for kin_g in kin_dict:
@@ -321,3 +304,7 @@ if __name__=='__main__':
         train_ls = generate_ls(kin_dict[kin_g], 3)
         with open('{}.pkl'.format(kin_g), 'wb') as fp:
             pickle.dump(train_ls, fp)
+
+    # with open ('bro_bro.pkl', 'rb') as fp:
+    #     itemlist = pickle.load(fp)
+    #
