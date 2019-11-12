@@ -1,3 +1,7 @@
+"""
+extract frames from original segmented videos
+"""
+
 import cv2
 import sys
 import os
@@ -33,6 +37,25 @@ def extract_frm(ipth,opth):
             _extract_frm(ovpth, opth)
 
 
+
+def extract_frm_allyes(ipth,opth):
+    """
+    extrat all yes from 0/2/4/6.mp4
+    :param ipth: ori videos list for extracting
+    :param opth: out put path
+    :return: saving the extracted frames in opth
+    """
+    for vis in sorted(os.listdir(ipth)):
+        for i in ['0','2','4','6']:
+            if vis.startswith(i):
+                ovpth = os.path.join(ipth, vis)
+                dpth = os.path.join(opth, i)
+                if not os.path.isdir(dpth):
+                    os.makedirs(dpth)
+                _extract_frm(ovpth, dpth)
+
+
+
 def read_xls(xlsx):
     a = pd.read_excel(xlsx)
 
@@ -55,10 +78,10 @@ if __name__ == '__main__':
 
     # load path
 
-    ori_path = '/home/wei/Documents/DATA/kinship/crops_ori/'
-    dir_path = '/home/wei/Documents/DATA/kinship/ksframes/'
+    ori_path = '/home/wei/Documents/Data/kinship/crops_ori/'
+    dir_path = '/home/wei/Documents/Data/kinship/ksframes/'
 
-    give_kin = "S-S"
+    give_kin = "F-D"
     ori_ud = os.path.join(ori_path,kin_dict[give_kin])
     dir_ud = os.path.join(dir_path,kin_dict[give_kin])
     a = pd.read_excel('kinship.xlsx')
@@ -114,8 +137,8 @@ if __name__ == '__main__':
         kinship_train_list.append((kin_a_fr,kin_b_fr))
         afr_pth = os.path.join(dir_ud, kin_a_fr)
         bfr_pth = os.path.join(dir_ud, kin_b_fr)
-        extract_frm(kin_a_pth,afr_pth)
-        extract_frm(kin_b_pth,bfr_pth)
+        extract_frm_allyes(kin_a_pth,afr_pth)
+        extract_frm_allyes(kin_b_pth,bfr_pth)
 
     print(kinship_train_list)
 

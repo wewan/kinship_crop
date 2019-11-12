@@ -33,10 +33,13 @@ if __name__ == "__main__":
 	mode 1: ssd detection + opencv
 	mode 2: pure ssd detection
 	"""
-	path = "/home/wei/Documents/DATA/kinship/ksframes/"
+	path = "/home/wei/Documents/Data/kinship/ksframes/"
 	ls = sorted(os.listdir(path))
 	for sl in ls:
+		print('start:{}'.format(sl))
 		sub_path = os.path.join(path,sl)
-		for su in sorted(os.listdir(sub_path)):
-			face_tracking(path,mode = 2)
-			print("finish {}".format(su))
+
+		# for su in sorted(os.listdir(sub_path)):
+		face_tracking(sub_path,mode = 2)
+
+		print('finish:{}'.format(sl))
