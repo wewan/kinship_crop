@@ -12,9 +12,9 @@ def get_args():
 									 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 	# parser.add_argument("--output", "-o", type=str,default='train_data.npz',
 	# 					help="path to output database mat file")
-	parser.add_argument("--img_pth", type=str, default="/home/wei/Documents/Data/kinship/ksframes/",
+	parser.add_argument("--img_pth", type=str, default="/home/wei/Documents/Data/kinship/ksframes_align/",
 						help="dataset from videos")
-	parser.add_argument("--img_size", type=int, default=160,
+	parser.add_argument("--img_size", type=int, default=250,
 						help="output image size")
 	# parser.add_argument("--min_score", type=float, default=1.0,
 	#                     help="minimum face_score")
@@ -106,7 +106,7 @@ def main_align():
 			for i, img_path in enumerate(img_pths):
 				img = cv2.imread(img_path)
 				bbox = read_bbox(img_path.replace('ksframes','bbox')[:-3]+'txt')
-				px1,py1,px2,py2 = enlarge_bbox(bbox,img.shape[1],img.shape[0],1.35)
+				px1,py1,px2,py2 = enlarge_bbox(bbox,img.shape[1],img.shape[0],2)
 				# crop_img = img[bbox[1]:bbox[1]+bbox[3],bbox[0]:bbox[0]+bbox[2]]
 				crop_img = img[py1:py2, px1:px2]
 				## for debug
